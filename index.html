@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>23rd Birthday</title>
+    <title>Lunch Box</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@400;600&display=swap"
@@ -16,6 +16,78 @@
 
     <!-- Developed by GrabCharles -->
 
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main scene -->
+    <div class="scene">
+
+        <!-- Hint text -->
+        <p class="hint-text" id="hintText">✨ Click the lunch box! ✨</p>
+
+        <!-- Lunch Box -->
+        <div class="lunchbox-wrapper" id="lunchboxWrapper">
+
+            <!-- Decorative bow on top -->
+            <div class="bow" id="bow">
+                <div class="bow-left"></div>
+                <div class="bow-knot"></div>
+                <div class="bow-right"></div>
+            </div>
+
+            <!-- Box lid -->
+            <div class="lunchbox-lid" id="lunchboxLid">
+                <div class="lid-shine"></div>
+                <div class="lid-pattern">
+                    <span>🌸</span><span>🍓</span><span>🌸</span>
+                    <span>🍓</span><span>💕</span><span>🍓</span>
+                    <span>🌸</span><span>🍓</span><span>🌸</span>
+                </div>
+                <div class="lid-latch"></div>
+            </div>
+
+            <!-- Box body -->
+            <div class="lunchbox-body">
+                <div class="body-shine"></div>
+                <div class="body-stripe"></div>
+            </div>
+
+            <!-- Letter inside (revealed when opened) -->
+            <div class="letter-container" id="letterContainer">
+                <div class="letter" id="letter">
+                    <div class="letter-inner">
+                        <div class="letter-header">
+                            <span class="letter-flower">🌸</span>
+                            <span class="letter-title">For You~</span>
+                            <span class="letter-flower">🌸</span>
+                        </div>
+                        <div class="letter-divider"></div>
+                        <div class="letter-body">
+                            <p>Hey you,</p>
+                            <p>I made this little lunch box just for you. 🍱</p>
+                            <p>Every bite is packed with lots of love and warm thoughts.</p>
+                            <p>Hope it makes your day a little sweeter! 🍓</p>
+                            <p>Don't forget — you are so loved. 💕</p>
+                        </div>
+                        <div class="letter-footer">
+                            <span>With all my heart,</span>
+                            <span class="letter-signature">GrabCharles 🌷</span>
+                        </div>
+                        <div class="letter-deco">
+                            <span>🌸</span><span>💕</span><span>🍓</span><span>💕</span><span>🌸</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div><!-- /.scene -->
+
+    <!-- Heart burst effect -->
+    <div class="heart-burst" id="heartBurst"></div>
+
+    <audio id="bgMusic" src="css/sounds/love.mp3" loop></audio>
     <script src="js/index.js"></script>
 </body>
 

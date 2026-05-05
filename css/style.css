@@ -1,0 +1,500 @@
+/* =============================================
+   LUNCH BOX — by GrabCharles
+   style.css
+   ============================================= */
+
+:root {
+    --pink-light:   #ffd6e7;
+    --pink-mid:     #ffadd2;
+    --pink-vivid:   #ff85bb;
+    --pink-deep:    #e8639a;
+    --red-berry:    #f24776;
+    --cream:        #fff8f0;
+    --cream-dark:   #fde8d0;
+    --mint:         #b5ead7;
+    --lilac:        #d5b4f0;
+    --text-dark:    #5c3a5a;
+    --text-mid:     #8b5e83;
+    --shadow-pink:  rgba(232, 99, 154, 0.3);
+    --shadow-deep:  rgba(92, 58, 90, 0.15);
+    --box-red:      #e84a6a;
+    --box-red-dark: #c13557;
+    --box-body:     #f06a8a;
+    --box-body-dark:#d1566f;
+}
+
+/* ── Reset & Base ─────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe0f0 0%, #ffd6e7 30%, #fff0f8 60%, #fce4ff 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    position: relative;
+}
+
+/* ── Floating Particles ───────────────────── */
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: floatUp var(--dur) ease-in infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes floatUp {
+    0%   { opacity: 0; transform: translateY(0) scale(0.8) rotate(0deg); }
+    10%  { opacity: 0.7; }
+    80%  { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.2) rotate(360deg); }
+}
+
+/* ── Scene ────────────────────────────────── */
+.scene {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* ── Hint Text ────────────────────────────── */
+.hint-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--pink-deep);
+    text-shadow: 0 2px 8px var(--shadow-pink);
+    animation: pulse 2s ease-in-out infinite;
+    letter-spacing: 1px;
+    transition: opacity 0.5s ease;
+}
+
+.hint-text.hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1);    opacity: 1; }
+    50%       { transform: scale(1.06); opacity: 0.75; }
+}
+
+/* ── Lunch Box Wrapper ────────────────────── */
+.lunchbox-wrapper {
+    position: relative;
+    width: 220px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    filter: drop-shadow(0 12px 28px var(--shadow-pink));
+}
+
+.lunchbox-wrapper:hover {
+    transform: translateY(-6px) rotate(-1deg);
+}
+
+.lunchbox-wrapper:active {
+    transform: translateY(-2px) scale(0.97);
+}
+
+.lunchbox-wrapper.opened {
+    cursor: default;
+}
+
+.lunchbox-wrapper.opened:hover {
+    transform: translateY(-6px);
+}
+
+/* wobble on load */
+.lunchbox-wrapper {
+    animation: wobbleIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes wobbleIn {
+    0%   { opacity: 0; transform: scale(0.4) rotate(-10deg); }
+    60%  { transform: scale(1.08) rotate(3deg); }
+    80%  { transform: scale(0.96) rotate(-1deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ── Bow ──────────────────────────────────── */
+.bow {
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 20;
+    animation: bowBounce 3s ease-in-out infinite;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lunchbox-wrapper.opened .bow {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(0.6);
+    pointer-events: none;
+}
+
+@keyframes bowBounce {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50%       { transform: translateX(-50%) rotate(3deg); }
+}
+
+.bow-left, .bow-right {
+    width: 44px;
+    height: 30px;
+    background: var(--red-berry);
+    border-radius: 50% 0 50% 50%;
+    box-shadow: inset 0 -4px 8px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.bow-left {
+    transform: rotate(20deg);
+    transform-origin: right center;
+}
+
+.bow-left::after {
+    content: '';
+    position: absolute;
+    inset: 4px 6px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+}
+
+.bow-right {
+    transform: rotate(-20deg) scaleX(-1);
+    transform-origin: left center;
+}
+
+.bow-right::after {
+    content: '';
+    position: absolute;
+    inset: 4px 6px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+}
+
+.bow-knot {
+    width: 18px;
+    height: 18px;
+    background: var(--red-berry);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2), inset 0 -2px 4px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.3);
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+/* ── Lid ──────────────────────────────────── */
+.lunchbox-lid {
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(160deg, var(--box-red) 0%, var(--box-red-dark) 100%);
+    border-radius: 18px 18px 6px 6px;
+    position: relative;
+    overflow: hidden;
+    transform-origin: bottom center;
+    transition: transform 0.5s ease, opacity 0.4s ease;
+    z-index: 5;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+}
+
+.lunchbox-wrapper.opened .lunchbox-lid {
+    transform: translateY(-120%) scaleY(0.6);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.lid-shine {
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    right: 12px;
+    height: 16px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 50px;
+}
+
+.lid-pattern {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    place-items: center;
+    padding: 4px;
+    font-size: 0.7rem;
+    opacity: 0.55;
+}
+
+.lid-latch {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 12px;
+    background: var(--box-red-dark);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.lid-latch::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 10px;
+    height: 6px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
+/* ── Body ─────────────────────────────────── */
+.lunchbox-body {
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(160deg, var(--box-body) 0%, var(--box-body-dark) 100%);
+    border-radius: 6px 6px 20px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        inset 0 8px 0 rgba(255,255,255,0.12),
+        0 8px 24px rgba(0,0,0,0.12);
+}
+
+.body-shine {
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    right: 14px;
+    height: 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50px;
+}
+
+.body-stripe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 22px;
+    background: rgba(0,0,0,0.07);
+    border-radius: 0 0 20px 20px;
+}
+
+/* ── Letter Container ─────────────────────── */
+.letter-container {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0) translateY(20px);
+    transform-origin: top center;
+    opacity: 0;
+    transition:
+        transform 0.6s cubic-bezier(0.34,1.3,0.64,1) 0.4s,
+        opacity   0.4s ease 0.4s;
+    width: 240px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.lunchbox-wrapper.opened .letter-container {
+    transform: translateX(-50%) scaleY(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ── Letter ───────────────────────────────── */
+.letter {
+    background: var(--cream);
+    border-radius: 16px;
+    border: 2px solid var(--pink-mid);
+    box-shadow:
+        0 16px 40px rgba(232,99,154,0.25),
+        0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    animation: none;
+}
+
+.lunchbox-wrapper.opened .letter {
+    animation: letterWiggle 0.4s ease 0.9s both;
+}
+
+@keyframes letterWiggle {
+    0%  { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    75% { transform: rotate(-1deg); }
+    100%{ transform: rotate(0deg); }
+}
+
+.letter-inner {
+    padding: 20px 18px 16px;
+}
+
+.letter-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.letter-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--red-berry);
+    letter-spacing: 1px;
+}
+
+.letter-flower {
+    font-size: 1.1rem;
+    animation: spinFlower 4s linear infinite;
+}
+
+@keyframes spinFlower {
+    0%   { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(180deg) scale(1.15); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.letter-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pink-mid), transparent);
+    border-radius: 2px;
+    margin-bottom: 12px;
+}
+
+.letter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.letter-body p {
+    font-size: 0.82rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.letter-body p:first-child {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.05rem;
+    color: var(--pink-deep);
+}
+
+.letter-footer {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    font-weight: 600;
+}
+
+.letter-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.15rem;
+    color: var(--red-berry);
+}
+
+.letter-deco {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    animation: decoFade 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes decoFade {
+    from { opacity: 0.6; transform: scale(0.95); }
+    to   { opacity: 1;   transform: scale(1.05); }
+}
+
+/* ── Letter click-to-close cursor ────────── */
+.lunchbox-wrapper.opened .letter {
+    cursor: pointer;
+}
+
+/* ── Letter hover hint ────────────────────── */
+.lunchbox-wrapper.opened .letter:hover {
+    box-shadow:
+        0 16px 40px rgba(232,99,154,0.35),
+        0 4px 12px rgba(0,0,0,0.1);
+    transform: scale(1.01);
+}
+
+/* ── Heart Burst ──────────────────────────── */
+.heart-burst {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.burst-heart {
+    position: absolute;
+    font-size: 1.4rem;
+    animation: burstFly 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes burstFly {
+    0%   { opacity: 1; transform: translate(0,0) scale(0.5); }
+    50%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(1.3); }
+}
+
+/* ── Sparkle ring on click ────────────────── */
+.sparkle-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border: 3px solid var(--pink-vivid);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: ringExpand 0.7s ease-out forwards;
+    pointer-events: none;
+    z-index: 50;
+}
+
+@keyframes ringExpand {
+    0%   { transform: translate(-50%,-50%) scale(0);   opacity: 1; }
+    100% { transform: translate(-50%,-50%) scale(18);  opacity: 0; }
+}
