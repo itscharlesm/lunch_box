@@ -18,7 +18,7 @@
     --box-body-dark: #d1566f;
 }
 
-/* ── Reset & Base ─────────────────────────── */
+/* Reset & Base */
 *,
 *::before,
 *::after {
@@ -45,7 +45,7 @@ body {
     position: relative;
 }
 
-/* ── Floating Particles ───────────────────── */
+/* Floating Particles */
 .particles {
     position: fixed;
     inset: 0;
@@ -82,7 +82,7 @@ body {
     }
 }
 
-/* ── Scene ────────────────────────────────── */
+/* Scene */
 .scene {
     position: relative;
     z-index: 10;
@@ -92,7 +92,7 @@ body {
     gap: 24px;
 }
 
-/* ── Hint Text ────────────────────────────── */
+/* Hint Text */
 .hint-text {
     font-family: 'Dancing Script', cursive;
     font-size: 1.4rem;
@@ -123,7 +123,7 @@ body {
     }
 }
 
-/* ── Lunch Box Wrapper ────────────────────── */
+/* Lunch Box Wrapper */
 .lunchbox-wrapper {
     position: relative;
     width: 220px;
@@ -173,7 +173,7 @@ body {
     }
 }
 
-/* ── Bow ──────────────────────────────────── */
+/* Bow */
 .bow {
     position: absolute;
     top: -28px;
@@ -251,7 +251,7 @@ body {
     flex-shrink: 0;
 }
 
-/* ── Lid ──────────────────────────────────── */
+/* Lid */
 .lunchbox-lid {
     width: 100%;
     height: 70px;
@@ -318,7 +318,7 @@ body {
     border-radius: 3px;
 }
 
-/* ── Body ─────────────────────────────────── */
+/* Body */
 .lunchbox-body {
     width: 100%;
     height: 90px;
@@ -351,7 +351,7 @@ body {
     border-radius: 0 0 20px 20px;
 }
 
-/* ── Letter Container ─────────────────────── */
+/* Letter Container */
 .letter-container {
     position: absolute;
     top: 40px;
@@ -362,7 +362,7 @@ body {
     transition:
         transform 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) 0.4s,
         opacity 0.4s ease 0.4s;
-    width: 240px;
+    width: min(90vw, 450px);
     z-index: 1;
     pointer-events: none;
 }
@@ -373,7 +373,7 @@ body {
     pointer-events: all;
 }
 
-/* ── Letter ───────────────────────────────── */
+/* Letter */
 .letter {
     background: var(--cream);
     border-radius: 16px;
@@ -412,7 +412,7 @@ body {
 }
 
 .letter-inner {
-    padding: 20px 18px 16px;
+    padding: 28px 40px 24px;
 }
 
 .letter-header {
@@ -514,12 +514,12 @@ body {
     }
 }
 
-/* ── Letter click-to-close cursor ────────── */
+/* Letter click-to-close cursor */
 .lunchbox-wrapper.opened .letter {
     cursor: pointer;
 }
 
-/* ── Letter hover hint ────────────────────── */
+/* Letter hover hint */
 .lunchbox-wrapper.opened .letter:hover {
     box-shadow:
         0 16px 40px rgba(232, 99, 154, 0.35),
@@ -527,7 +527,7 @@ body {
     transform: scale(1.01);
 }
 
-/* ── Heart Burst ──────────────────────────── */
+/* Heart Burst */
 .heart-burst {
     position: fixed;
     inset: 0;
@@ -559,7 +559,7 @@ body {
     }
 }
 
-/* ── Sparkle ring on click ────────────────── */
+/* Sparkle ring on click */
 .sparkle-ring {
     position: absolute;
     top: 50%;
@@ -583,5 +583,20 @@ body {
     100% {
         transform: translate(-50%, -50%) scale(18);
         opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .letter-inner {
+        padding: 20px 18px;
+    }
+
+    .letter-body p {
+        font-size: 0.78rem;
+    }
+
+    .letter-container {
+        top: 20px; /* slightly higher so it fits better */
     }
 }
